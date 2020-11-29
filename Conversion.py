@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import ttk as t
+from tkinter import messagebox
 import json
 import urllib.request
-from tkinter import messagebox
+
 
 root = Tk()
 root.geometry('220x270+540+200')
