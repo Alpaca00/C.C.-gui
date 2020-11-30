@@ -6,9 +6,17 @@ import urllib.request
 
 
 root = Tk()
-root.geometry('220x270+540+200')
+root.geometry('220x340+540+200')
 root.title('С.С.')
 root.resizable(False, False)
+
+
+def reverse():
+    x = float(entry.get())
+    y = float(JSON_object[0]['buy'])
+    result = x * y
+    entry.insert(0, result)
+
 
 def reset():
     entry.delete(0, END)
@@ -77,6 +85,18 @@ t_sale_btc = Label(label, text=JSON_object[3]['sale'], bg="#FFFAFA", font="Arial
 t_sale_btc.grid(row=4, column=2, sticky=EW)      
 
 
+
+scale1 = Scale(root, orient=HORIZONTAL, from_=0, to=10000, bg='#FFFAFA', fg='maroon')
+scale1.pack(fill=X)
+
+def getV(root):
+    a = scale1.get()
+    entry.delete(0, END)
+    entry.insert(0, a)
+
+
+scale1.bind("<Button-1>", getV)
+
 entry = Entry(root)
 entry.pack(fill=X)
 
@@ -89,6 +109,10 @@ frame2.pack(fill=X, expand=1, side=RIGHT)
 
 s2 = t.Style()
 s2.configure('RES.TButton', background='red', foreground='tomato')
+
+
+btn_reverse_usd = t.Button(frame2, text='REVERSE USD', style='RES.TButton', command=reverse)
+btn_reverse_usd.pack(fill=X, expand=True, side=TOP)
 
 btn_reset = t.Button(frame2, text='RESET', style='RES.TButton', command=reset)
 btn_reset.pack(fill=X, expand=True, side=TOP)
